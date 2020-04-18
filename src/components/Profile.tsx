@@ -1,4 +1,5 @@
 import React from 'react';
+import {Card} from 'semantic-ui-react';
 
 
 type ProfileType =  {
@@ -16,16 +17,25 @@ interface IProfileProps {
 
 export default class Profile extends React.Component<IProfileProps> {
 
-    render() {
-        return (
-            
-            <div>
-            <h1>{this.props.profile.userName}</h1>
-            <h4>Gender {this.props.profile.gender}</h4>
-            <h4>Born in {this.props.profile.dateOfBirth}</h4>
-            <h4>Location {this.props.profile.place}</h4>
-            </div>
-            
+    displayUserInformation = () => (
+            <Card>
+    
+            <Card.Content>
+            <Card.Header>{this.props.profile.userName.toUpperCase()}</Card.Header>
+            <Card.Meta>
+            <span className='date'>Gender {this.props.profile.gender}</span>
+            </Card.Meta>
+            <Card.Meta>
+            <span className='date'>Born in {this.props.profile.dateOfBirth.toLocaleDateString()}</span>
+            </Card.Meta>
+            <Card.Description>
+            Location {this.props.profile.place}
+            </Card.Description>
+            </Card.Content>
+            </Card>
+    )
 
-        )}
+    render() {
+        return this.displayUserInformation();
+    }
 }
